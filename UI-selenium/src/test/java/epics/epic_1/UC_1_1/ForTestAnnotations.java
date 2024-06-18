@@ -1,0 +1,9 @@
+package epics.epic_1.UC_1_1;
+
+import org.junit.platform.suite.api.SelectClasses;
+import org.junit.platform.suite.api.Suite;
+
+@Suite
+@SelectClasses(RegistrationValidTest.class)
+public class ForTestAnnotations {
+}

@@ -28,9 +28,30 @@ public class RegistrationValidTest extends BaseTest {
     }
 
     @Owner(value = "Миргалеев Денис")
-    @DisplayName("Валидная регистрация")
+    @DisplayName("Регистрация с валидными данными")
     @Test
     public void checkRegistration(){
         regPage.validDataRegistration();
     }
+/*    @Owner(value = "Миргалеев Денис")
+    @DisplayName("Регистрация с валидными данными")
+    @Test
+    public void checkValidDataRegistration(){
+        regPage.clearField();
+        regPage.sendDataToField();
+    }
+
+    public void validDataRegistration(){
+        setFirstName("Иван");
+        setLastName("Биван");
+        setMiddleName("Диван");
+        setPhoneNumber("8005553535");
+        setBirthDate("11.11.1999");
+        clickNextButton();
+        setEmail("mail@mail.ru");
+        setPassword("Pass_R1112");
+        setRepeatPassword("Pass_R1112");
+        clickAgreementCheckBox();
+        clickRegistrationButton();
+    }*/
 }

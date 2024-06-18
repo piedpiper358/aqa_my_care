@@ -11,69 +11,75 @@ import static org.openqa.selenium.Keys.*;
 
 public class RegistrationPage extends BasePage {
     @FindBy(xpath = "//input[@name='firstName']")
-    private WebElement firstNameFieldLocator;
+    private WebElement firstNameField;
     @FindBy(xpath = "//input[@name='lastName']")
-    private WebElement lastNameFieldLocator;
+    private WebElement lastNameField;
     @FindBy(xpath = "//input[@name='middleName']")
-    private WebElement middleFieldLocator;
+    private WebElement middleField;
     @FindBy(xpath = "//input[@name='phoneNumber']")
-    private WebElement phoneNumberFieldLocator;
+    private WebElement phoneNumberField;
     @FindBy(xpath = "//input[@name='dateOfBirth']")
-    private WebElement birthDateFieldLocator;
+    private WebElement birthDateField;
     @FindBy(xpath = "//button[text()='Далее']")
-    private WebElement nextButtonLocator;
+    private WebElement nextButton;
     @FindBy(xpath = "//input[@name='email']")
-    private WebElement emailFieldLocator;
+    private WebElement emailField;
     @FindBy(xpath = "//input[@name='password']")
-    private WebElement passwordFieldLocator;
+    private WebElement passwordField;
     @FindBy(xpath = "//input[@name='repeatPassword']")
-    private WebElement repeatPasswordFieldLocator;
+    private WebElement repeatPasswordField;
     @FindBy(xpath = "//input[@name='agreement']")
-    private WebElement policyAgreementButtonLocator;
+    private WebElement policyAgreementButton;
     @FindBy(xpath = "//button[text()='Регистрация']")
-    private WebElement registrationButtonLocator;
+    private WebElement registrationButton;
     @FindBy(xpath = "//input[@name='firstName']/parent::div/following-sibling::p")
-    private WebElement firstNameBlockLocator;
+    private WebElement firstNameBlock;
     public RegistrationPage() {
         PageFactory.initElements(driver, this); //инициализируем данный класс
     }
-
+    public void clearField(WebElement element){
+        element.sendKeys(SHIFT, HOME, DELETE);
+    }
+    public void sendDataToField(WebElement element, String data){
+        element.sendKeys(data);
+    }
     public void setFirstName (String firstName){
-        firstNameFieldLocator.sendKeys(firstName);
+        firstNameField.sendKeys(firstName);
     }
     public void setLastName (String lastName){
-        lastNameFieldLocator.sendKeys(lastName);
+        lastNameField.sendKeys(lastName);
     }
     public void setMiddleName (String middleName){
-        middleFieldLocator.sendKeys(middleName);
+        middleField.sendKeys(middleName);
     }
     public void setPhoneNumber (String phoneNumber){
-        phoneNumberFieldLocator.click();
-        phoneNumberFieldLocator.sendKeys(phoneNumber);
+        phoneNumberField.click();
+        phoneNumberField.sendKeys(phoneNumber);
     }
     public void setBirthDate (String birthDate){
-        birthDateFieldLocator.click();
-        birthDateFieldLocator.sendKeys(birthDate);
+        birthDateField.click();
+        birthDateField.sendKeys(birthDate);
     }
     public void clickNextButton(){
-        nextButtonLocator.click();
+        nextButton.click();
     }
     public void setEmail (String email){
 
-        emailFieldLocator.sendKeys(email);
+        emailField.sendKeys(email);
     }
     public void setPassword (String Password){
-        passwordFieldLocator.sendKeys(Password);
+        passwordField.sendKeys(Password);
     }
     public void setRepeatPassword (String RepeatPassword){
-        repeatPasswordFieldLocator.sendKeys(RepeatPassword);
+        repeatPasswordField.sendKeys(RepeatPassword);
     }
     public void clickAgreementCheckBox(){
-        policyAgreementButtonLocator.click();
+        policyAgreementButton.click();
     }
     public void clickRegistrationButton(){
-        registrationButtonLocator.click();
+        registrationButton.click();
     }
+
     public void validDataRegistration(){
         setFirstName("Иван");
         setLastName("Биван");
@@ -89,51 +95,51 @@ public class RegistrationPage extends BasePage {
     }
 
     public void checkFirstName (String firstName){
-        firstNameFieldLocator.clear();
-        firstNameFieldLocator.sendKeys(SHIFT, HOME, DELETE);
-        firstNameFieldLocator.sendKeys(firstName);
+        firstNameField.clear();
+        firstNameField.sendKeys(SHIFT, HOME, DELETE);
+        firstNameField.sendKeys(firstName);
         Assertions.assertTrue(driver.findElements(By.xpath("//input[@name='firstName']/parent::div/following-sibling::p")).isEmpty());
     }
     public void checkLastName (String secondName){
-        lastNameFieldLocator.clear();
-        lastNameFieldLocator.sendKeys(SHIFT, HOME, DELETE);
-        lastNameFieldLocator.sendKeys(secondName);
+        lastNameField.clear();
+        lastNameField.sendKeys(SHIFT, HOME, DELETE);
+        lastNameField.sendKeys(secondName);
         Assertions.assertTrue(driver.findElements(By.xpath("//input[@name='secondName']/parent::div/following-sibling::p")).isEmpty());
     }
     public void checkMiddleName (String middleName){
-        middleFieldLocator.clear();
-        middleFieldLocator.sendKeys(SHIFT, HOME, DELETE);
-        middleFieldLocator.sendKeys(middleName);
+        middleField.clear();
+        middleField.sendKeys(SHIFT, HOME, DELETE);
+        middleField.sendKeys(middleName);
         Assertions.assertTrue(driver.findElements(By.xpath("//input[@name='middleName']/parent::div/following-sibling::p")).isEmpty());
     }
     public void checkPhoneNumber (String number){
-        phoneNumberFieldLocator.clear();
-        phoneNumberFieldLocator.sendKeys(SHIFT, HOME, DELETE);
-        phoneNumberFieldLocator.sendKeys(number);
+        phoneNumberField.clear();
+        phoneNumberField.sendKeys(SHIFT, HOME, DELETE);
+        phoneNumberField.sendKeys(number);
         Assertions.assertTrue(driver.findElements(By.xpath("//input[@name='phoneNumber']/parent::div/following-sibling::p")).isEmpty());
     }
     public void checkBirthDate (String date){
-        birthDateFieldLocator.clear();
-        birthDateFieldLocator.sendKeys(SHIFT, HOME, DELETE);
-        birthDateFieldLocator.sendKeys(date);
+        birthDateField.clear();
+        birthDateField.sendKeys(SHIFT, HOME, DELETE);
+        birthDateField.sendKeys(date);
         Assertions.assertTrue(driver.findElements(By.xpath("//input[@name='dateOfBirth']/parent::div/following-sibling::p")).isEmpty());
     }
     public void checkEmail (String email){
-        emailFieldLocator.clear();
-        emailFieldLocator.sendKeys(SHIFT, HOME, DELETE);
-        emailFieldLocator.sendKeys(email);
+        emailField.clear();
+        emailField.sendKeys(SHIFT, HOME, DELETE);
+        emailField.sendKeys(email);
         Assertions.assertTrue(driver.findElements(By.xpath("//input[@name='email']/parent::div/following-sibling::p")).isEmpty());
     }
     public void checkPassword (String password){
-        passwordFieldLocator.clear();
-        passwordFieldLocator.sendKeys(SHIFT, HOME, DELETE);
-        passwordFieldLocator.sendKeys(password);
+        passwordField.clear();
+        passwordField.sendKeys(SHIFT, HOME, DELETE);
+        passwordField.sendKeys(password);
         Assertions.assertTrue(driver.findElements(By.xpath("//input[@name='password']/parent::div/following-sibling::p")).isEmpty());
     }
     public void checkRepeatPassword (String password){
-        repeatPasswordFieldLocator.clear();
-        repeatPasswordFieldLocator.sendKeys(SHIFT, HOME, DELETE);
-        repeatPasswordFieldLocator.sendKeys(password);
+        repeatPasswordField.clear();
+        repeatPasswordField.sendKeys(SHIFT, HOME, DELETE); //Команда для очистки формы
+        repeatPasswordField.sendKeys(password);
         Assertions.assertTrue(driver.findElements(By.xpath("//input[@name='repeatPassword']/parent::div/following-sibling::p")).isEmpty());
     }
 }
