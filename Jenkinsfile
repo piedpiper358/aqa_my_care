@@ -23,7 +23,7 @@ pipeline {
 				}
 			}
 				steps {
-					sh 'mvn clean install'
+					sh 'mvn clean install -U'
 					sh 'mvn clean test'
 					sh 'ls -al'
 				}
