@@ -3,7 +3,7 @@ pipeline {
         label 'master'
     }
     environment{
-        TEST_CONTAINER_IMAGE = 'maven:latest'
+        TEST_CONTAINER_IMAGE = 'maven:3.9.7'
         GIT_REPO_URL = 'https://git.astondevs.ru/aston/my-care/aqa_my_care.git'
         GIT_CREDS_ID = 'gitlab-aston'
         INNER_CONTAINER_WORK_DIR = "/usr/src/myapp"
