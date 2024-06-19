@@ -2,10 +2,7 @@ package epics.epic_1.UC_1_1;
 
 import core.BaseTest;
 import io.qameta.allure.Owner;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.platform.suite.api.SelectClasses;
 import org.junit.platform.suite.api.SelectPackages;
 import org.junit.platform.suite.api.Suite;
@@ -30,28 +27,18 @@ public class RegistrationValidTest extends BaseTest {
     @Owner(value = "Миргалеев Денис")
     @DisplayName("Регистрация с валидными данными")
     @Test
-    public void checkRegistration(){
-        regPage.validDataRegistration();
-    }
-/*    @Owner(value = "Миргалеев Денис")
-    @DisplayName("Регистрация с валидными данными")
-    @Test
-    public void checkValidDataRegistration(){
-        regPage.clearField();
-        regPage.sendDataToField();
-    }
-
     public void validDataRegistration(){
-        setFirstName("Иван");
-        setLastName("Биван");
-        setMiddleName("Диван");
-        setPhoneNumber("8005553535");
-        setBirthDate("11.11.1999");
-        clickNextButton();
-        setEmail("mail@mail.ru");
-        setPassword("Pass_R1112");
-        setRepeatPassword("Pass_R1112");
-        clickAgreementCheckBox();
-        clickRegistrationButton();
-    }*/
+        regPage.setFirstName("Иван");
+        regPage.setLastName("Биван");
+        regPage.setMiddleName("Диван");
+        regPage.setPhoneNumber("8005553535");
+        regPage.setBirthDate("11.11.1999");
+        regPage.clickNextButton();
+        regPage.setEmail("mail@mail.ru");
+        regPage.setPassword("Pass_R1112");
+        regPage.setRepeatPassword("Pass_R1112");
+        regPage.clickAgreementCheckBox();
+        regPage.clickRegistrationButton();
+        Assertions.assertEquals("http://172.17.1.36:8080/auth", RegistrationPage.getCurrentUrl());
+    }
 }
