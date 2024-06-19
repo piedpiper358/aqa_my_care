@@ -6,7 +6,7 @@ Test:
   stage: test
   tags:
     - runner-free
-  image: maven:latest
+  image: selenium/standalone-chrome
   script:
     - mvn test
   after_script:
