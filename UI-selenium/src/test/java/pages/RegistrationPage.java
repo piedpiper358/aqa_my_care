@@ -3,6 +3,7 @@ package pages;
 import core.BasePage;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -35,10 +36,32 @@ public class RegistrationPage extends BasePage {
     private WebElement policyAgreementButton;
     @FindBy(xpath = "//button[text()='Регистрация']")
     private WebElement registrationButton;
+    @FindBy(xpath = "//button[text()='Регистрация']/preceding-sibling::button")
+    private WebElement backButton;
     @FindBy(xpath = "//input[@name='firstName']/parent::div/following-sibling::p")
     private WebElement firstNameBlock;
+    @FindBy(xpath = "//button[text()='Физическое лицо']")
+    private WebElement physicalPersonButton;
     public RegistrationPage() {
         PageFactory.initElements(driver, this); //инициализируем данный класс
+    }
+    public void setValidData(){
+        clearFieldFirstName();
+        setFirstName("Антон");
+        clearFieldLastName();
+        setLastName("Тонченко");
+        clearFieldMiddleName();
+        setMiddleName("Антонович");
+        setPhoneNumber("88005553535");
+        setBirthDate("01.01.1993");
+        clickNextButton();
+        clearFieldEmail();
+        setEmail("mili@mail.ru");
+        clearFieldPassword();
+        setPassword("PassW_r3333");
+        clearFieldRepeatPassword();
+        setRepeatPassword("PassW_r3333");
+        clickBackRegistrationButton();
     }
 
     public void setFirstName (String firstName){
@@ -128,7 +151,22 @@ public class RegistrationPage extends BasePage {
     public void clickRegistrationButton(){
         registrationButton.click();
     }
+    public boolean checkRegistrationButton(){
+        try {
+            registrationButton.click();
+            return true;
+        } catch (Exception e) {
+            // Если произошло исключение, кнопка не кликабельна
+            return false;
+        }
+    }
+    public void clickBackRegistrationButton(){
+        backButton.click();
+    }
     public static String getCurrentUrl() {
         return driver.getCurrentUrl();
+    }
+    public void refreshPage(){
+        driver.navigate().refresh();
     }
 }

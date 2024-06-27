@@ -6,11 +6,10 @@ import org.junit.jupiter.api.*;
 import org.junit.platform.suite.api.SelectClasses;
 import org.junit.platform.suite.api.SelectPackages;
 import org.junit.platform.suite.api.Suite;
+import org.junit.platform.suite.api.SuiteDisplayName;
 import pages.AuthorizationPage;
 import pages.RegistrationPage;
 
-@Suite
-@SelectClasses({RegistrationParameterisedValidTest.class})
 public class RegistrationValidTest extends BaseTest {
     AuthorizationPage authPage;
     RegistrationPage regPage;
