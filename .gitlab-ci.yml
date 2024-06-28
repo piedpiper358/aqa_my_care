@@ -1,0 +1,21 @@
+stages:
+  - test
+  - allure
+
+Test:
+  stage: test
+  tags:
+    - runner-free
+  image: selenium/standalone-chrome
+  script:
+    - mvn test
+  after_script:
+    - ls -al
+
+Allure:
+  stage: allure
+  script:
+    - allure generate api_target_allure-results -o allure-report
+  artifacts:
+    paths:
+      - allure-report
