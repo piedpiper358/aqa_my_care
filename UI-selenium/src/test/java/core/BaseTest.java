@@ -2,6 +2,7 @@ package core;
 
 import driver.CreateWebDriver;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterAll;
 import org.openqa.selenium.WebDriver;
 import pages.MainPage;
 
@@ -14,5 +15,10 @@ public class BaseTest {
 
         BasePage.setDriver(driver);
         mainPage = new MainPage();
+    }
+    @AfterAll
+    public static void tearDown() {
+        driver.close();
+        driver.quit();
     }
 }
