@@ -1,6 +1,7 @@
 package pages;
 
 import core.BasePage;
+import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import static org.openqa.selenium.Keys.*;
 
+@Getter
 public class ProfilePage extends BasePage {
 
     //------------------Personal--------------------------
@@ -43,7 +45,6 @@ public class ProfilePage extends BasePage {
     @FindBy(xpath = "//input[@name='issuedBy']")
     private WebElement issuedByField;
 
-
     @FindBy(xpath = "//h4[text()='Паспортные данные']/following::button[text()='Сохранить']")
     private WebElement saveDocumentButton;
     @FindBy(xpath = "//h4[text()='Паспортные данные']/following::button[text()='Отменить']")
@@ -70,7 +71,6 @@ public class ProfilePage extends BasePage {
     //@FindBy(xpath = "//input[@name='телефон']")
     //private WebElement phoneNumberField;
 
-
     @FindBy(xpath = "//h4[text()='Контактные данные']/following::button[text()='Добавить номер']")
     private WebElement addPhoneNumberButton;
     @FindBy(xpath = "//h4[text()='Контактные данные']/following::button[text()='Сохранить']")
@@ -78,41 +78,34 @@ public class ProfilePage extends BasePage {
     @FindBy(xpath = "//h4[text()='Контактные данные']/following::button[text()='Отменить']")
     private WebElement cancelContactInfoChangeButton;
 
-
-
-
     public ProfilePage() {
         PageFactory.initElements(driver, this); //инициализируем данный класс
         open("http://172.17.1.83/profile");
     }
 
-
     public void setValidData(){
-        clickChangePersonalInfoButton();
+        getChangePersonalInfoButton().click();
         setFirstNameField("Гомер");
         setLastNameField("Симсон");
         setMiddleNameField("Джей");
         setDateOfBirthField("10.02.1998");
-        clickAddDocumentButton();
+        getAddDocumentButton().click();
         setDocumentSeriesField("1234");
         setDocumentNumberField("567890");
         setIssuedDateField("20.04.2020");
         setIssuedByField("ГУ МВД по г Спрингфилд");
-        clickAddAddressButton();
+        getAddAddressButton().click();
         setAddressRegisterField("г. Спрингфилд, Вечнозеленая аллея, д. 742, к.1, кв. 1");
         setAddressLivingField("г. Спрингфилд, Вечнозеленая аллея, д. 742, к.1, кв. 1");
-        clickSaveAddressButton();
+        getSaveAddressButton().click();
         setEmailField("homer@simsons.com");
-        clickAddPhoneNumberButton();
+        getAddPhoneNumberButton().click();
         setPhoneNumberField(0,"9214347867");
-        clickAddPhoneNumberButton();
+        getAddPhoneNumberButton().click();
         setPhoneNumberField(1,"9214343498");
     }
 
-
     //------------------Personal--------------------------
-    public void clickChangePersonalInfoButton(){ changePersonalInfoButton.click(); }
-
     public void setFirstNameField (String firstName){ clearFirstNameField(); firstNameField.sendKeys(firstName);}
     public void clearFirstNameField (){ new Actions(driver).click(firstNameField).keyDown(CONTROL).sendKeys(firstNameField, "a").keyUp(CONTROL).sendKeys(firstNameField, DELETE).perform(); }
     public String getFirstNameFieldErrorMessage(){ return driver.findElement(By.xpath("//input[@name='firstName']/parent::div/following-sibling::p")).getText(); }
@@ -133,12 +126,7 @@ public class ProfilePage extends BasePage {
     public void clearDateOfBirthField (){ new Actions(driver).click(birthDateField).keyDown(CONTROL).sendKeys(birthDateField, "a").keyUp(CONTROL).sendKeys(birthDateField, DELETE).perform(); }
     public String getDateOfBirthFieldErrorMessage(){ return driver.findElement(By.xpath("//input[@name='dateOfBirth']/parent::div/parent::div/following-sibling::p")).getText(); }
 
-
-    public void clickSavePersonalInfoButton(){ savePersonalInfoButton.click(); }
-
     //------------------Passport--------------------------
-    public void clickAddDocumentButton(){ addDocumentButton.click(); }
-
 
     public void setDocumentSeriesField (String documentSeries){ clearDocumentSeriesField(); documentSeriesField.sendKeys(documentSeries); }
     public void clearDocumentSeriesField (){ new Actions(driver).click(documentSeriesField).keyDown(CONTROL).sendKeys(documentSeriesField, "a").keyUp(CONTROL).sendKeys(documentSeriesField, DELETE).perform(); }
@@ -148,23 +136,15 @@ public class ProfilePage extends BasePage {
     public void clearDocumentNumberField (){ new Actions(driver).click(documentNumberField).keyDown(CONTROL).sendKeys(documentNumberField, "a").keyUp(CONTROL).sendKeys(documentNumberField, DELETE).perform(); }
     public String getDocumentNumberFieldErrorMessage(){ return driver.findElement(By.xpath("//input[@name='documentNumber']/parent::div/following-sibling::p")).getText(); }
 
-
     public void setIssuedDateField (String IssuedDate){ clearIssuedDateField(); issuedDateField.sendKeys(IssuedDate); }
     public void clearIssuedDateField (){ new Actions(driver).click(issuedDateField).keyDown(CONTROL).sendKeys(issuedDateField, "a").keyUp(CONTROL).sendKeys(issuedDateField, DELETE).perform(); }
     public String getIssuedDateFieldErrorMessage(){ return driver.findElement(By.xpath("//input[@name='issuedDate']/parent::div/parent::div/following-sibling::p")).getText(); }
-
 
     public void setIssuedByField (String nameFacilityIssued){ clearIssuedByField(); issuedByField.sendKeys(nameFacilityIssued); }
     public void clearIssuedByField (){ new Actions(driver).click(issuedByField).keyDown(CONTROL).sendKeys(issuedByField, "a").keyUp(CONTROL).sendKeys(issuedByField, DELETE).perform(); }
     public String getIssuedByFieldErrorMessage(){ return driver.findElement(By.xpath("//input[@name='nameFacilityIssued']/parent::div/following-sibling::p")).getText(); }
 
-    public void clickSavePassportInfoButton(){ savePersonalInfoButton.click(); }
-
-
     //------------------Address--------------------------
-    public void clickAddAddressButton(){ addAddressButton.click(); }
-
-
     public void setAddressRegisterField (String addressRegister){ clearAddressRegisterField(); addressRegisterField.sendKeys(addressRegister); }
     public void clearAddressRegisterField (){ new Actions(driver).click(addressRegisterField).keyDown(CONTROL).sendKeys(addressRegisterField, "a").keyUp(CONTROL).sendKeys(addressRegisterField, DELETE).perform(); }
     public String getAddressRegisterFieldErrorMessage(){ return driver.findElement(By.xpath("//input[@name='addressRegister']/parent::div/following-sibling::p")).getText(); }
@@ -172,20 +152,11 @@ public class ProfilePage extends BasePage {
     public void setAddressLivingField (String addressLiving){ clearAddressLivingField(); addressLivingField.sendKeys(addressLiving); }
     public void clearAddressLivingField (){ new Actions(driver).click(addressLivingField).keyDown(CONTROL).sendKeys(addressLivingField, "a").keyUp(CONTROL).sendKeys(addressLivingField, DELETE).perform(); }
     public String getAddressLivingFieldErrorMessage(){ return driver.findElement(By.xpath("//input[@name='addressLiving']/parent::div/following-sibling::p")).getText(); }
-
-    public void clickSaveAddressButton(){ saveAddressButton.click(); }
-
     
     //------------------Contact--------------------------
-    public void clickAddContactButton(){ addContactButton.click(); }
-
     public void setEmailField (String email){ clearEmailField(); emailField.sendKeys(email); }
     public void clearEmailField (){ new Actions(driver).click(emailField).keyDown(CONTROL).sendKeys(emailField, "a").keyUp(CONTROL).sendKeys(emailField, DELETE).perform(); }
     public String getEmailFieldErrorMessage(){ return driver.findElement(By.xpath("//input[@name='email']/parent::div/following-sibling::p")).getText(); }
-
-
-
-    public void clickAddPhoneNumberButton(){ addPhoneNumberButton.click(); }
 
     public void setPhoneNumberField (int fieldNumber, String phoneNumber){
         WebElement phoneNumberField = driver.findElement(By.xpath("//input[@name='телефон#"+fieldNumber+"']"));
@@ -203,9 +174,4 @@ public class ProfilePage extends BasePage {
         WebElement phoneNumberField = driver.findElement(By.xpath("//input[@name='телефон#"+fieldNumber+"']"));
         return driver.findElement(By.xpath("//input[@name='телефон#"+fieldNumber+"']/parent::div/following-sibling::p")).getText();
     }
-    public void clickSaveContactButton(){ saveContactButton.click(); }
-
-
-
-
 }

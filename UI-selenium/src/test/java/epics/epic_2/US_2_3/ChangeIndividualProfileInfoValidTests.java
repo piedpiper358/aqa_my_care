@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import pages.ProfilePage;
 
 
@@ -21,32 +20,32 @@ public class ChangeIndividualProfileInfoValidTests extends BaseTest {
     @DisplayName("Оформление ДМС с валидными данными")
     @Test
     public void validDataRegistration(){
-        profilePage.clickChangePersonalInfoButton();
+        profilePage.getChangePersonalInfoButton().click();
         profilePage.setFirstNameField("Гомер");
         profilePage.setLastNameField("Симсон");
         profilePage.setMiddleNameField("Джей");
         profilePage.setDateOfBirthField("10.02.1998");
-        profilePage.clickSavePersonalInfoButton();
+        profilePage.getSavePersonalInfoButton().click();
         //здесь должен быть Assert на то, что данные сохранены
-        profilePage.clickAddDocumentButton();
+        profilePage.getAddDocumentButton().click();
         profilePage.setDocumentSeriesField("1234");
         profilePage.setDocumentNumberField("567890");
         profilePage.setIssuedDateField("20.04.2020");
         profilePage.setIssuedByField("ГУ МВД по г Спрингфилд");
-        profilePage.clickSavePassportInfoButton();
+        profilePage.getSaveDocumentButton().click();
         //здесь должен быть Assert на то, что данные сохранены
-        profilePage.clickAddAddressButton();
+        profilePage.getAddAddressButton().click();
         profilePage.setAddressRegisterField("г. Спрингфилд, Вечнозеленая аллея, д. 742, к.1, кв. 1");
         profilePage.setAddressLivingField("г. Спрингфилд, Вечнозеленая аллея, д. 742, к.1, кв. 1");
-        profilePage.clickSaveAddressButton();
+        profilePage.getSaveAddressButton().click();
         //здесь должен быть Assert на то, что данные сохранены
-        profilePage.clickAddContactButton();
+        profilePage.getAddContactButton().click();
         profilePage.setEmailField("homer@simsons.com");
-        profilePage.clickAddPhoneNumberButton();
+        profilePage.getAddPhoneNumberButton().click();
         profilePage.setPhoneNumberField(0,"9214347867");
-        profilePage.clickAddPhoneNumberButton();
+        profilePage.getAddPhoneNumberButton().click();
         profilePage.setPhoneNumberField(1,"9214343498");
-        profilePage.clickSaveContactButton();
+        profilePage.getSaveContactButton().click();
         //здесь должен быть Assert на то, что данные сохранены
     }
 }

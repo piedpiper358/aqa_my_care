@@ -15,7 +15,6 @@ public class ChangeIndividualProfileInfoInvalidTests extends BaseTest {
     public static void preconditions() {
         profilePage = new ProfilePage();
         profilePage.setValidData();
-        //profilePage.goToSecondStepper();
     }
 
     //------------------Personal--------------------------
@@ -33,7 +32,7 @@ public class ChangeIndividualProfileInfoInvalidTests extends BaseTest {
         /*2. Опционально проверять активность кнопки отправки (disabled) - нужна обработка исключений от Assertion
         Assertions.assertFalse(profilePage.checkSendButtonIsEnabled());
         profilePage.setFirstName("Гомер");*/
-        /*3. Опционально проверять соответсвие текста сообщения об ошибке ожидаемому
+        /*3. Опционально проверять соответствие текста сообщения об ошибке ожидаемому
         Assertions.assertFalse(profilePage.getFirstNameErrorMessage().equals("Сообщение"));*/
     }
     @Order(2)
@@ -139,7 +138,7 @@ public class ChangeIndividualProfileInfoInvalidTests extends BaseTest {
     @ParameterizedTest
     @ValueSource(strings = {"12345678901","123456789", "", "+71234567890", "123A567890","12345?7890", "12345 7890"})
     public void checkPhoneNumberField(String phoneNumber) {
-        profilePage.clickAddPhoneNumberButton();
+        profilePage.getAddPhoneNumberButton().click();
         profilePage.setPhoneNumberField(0, phoneNumber);
         Assertions.assertFalse(profilePage.getPhoneNumberFieldErrorMessage(0).isEmpty());
     }
