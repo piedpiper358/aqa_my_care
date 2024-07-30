@@ -11,7 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import static org.openqa.selenium.Keys.*;
 
 @Getter
-public class ProfilePage extends BasePage {
+public class ProfileIndividualPage extends BasePage {
 
     //------------------Personal--------------------------
     @FindBy(xpath = "//h4[text()='Личные данные']/following::button[text()='Изменить']")
@@ -78,7 +78,7 @@ public class ProfilePage extends BasePage {
     @FindBy(xpath = "//h4[text()='Контактные данные']/following::button[text()='Отменить']")
     private WebElement cancelContactInfoChangeButton;
 
-    public ProfilePage() {
+    public ProfileIndividualPage() {
         PageFactory.initElements(driver, this); //инициализируем данный класс
         open("http://172.17.1.83/profile");
     }
